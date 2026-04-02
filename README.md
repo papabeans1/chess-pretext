@@ -4,6 +4,8 @@ experimenting with a chess blog reader where text reflows around a draggable boa
 
 ![screenshot](public/screenshot.png)
 
+![demo](public/demo.gif)
+
 
 ## how it works
 
