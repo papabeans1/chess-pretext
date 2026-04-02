@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exploring Pretext</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    color-scheme: light;
+    --page: #f5f1ea;
+    --ink: #201b18;
+    --muted: #6d645d;
+    --accent: #8b4513;
+  }
+  html, body { height: 100%; }
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: Palatino, serif;
+  }
+  .page {
+    position: relative;
+    width: min(860px, calc(100vw - 24px));
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  #stage { position: relative; width: 100%; }
+
+  .line {
+    position: absolute;
+    white-space: pre;
+    pointer-events: none;
+    user-select: text;
+  }
+  .line--title {
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .line--subtitle {
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .line--body {
+    color: var(--ink);
+    letter-spacing: 0.002em;
+    pointer-events: auto;
+  }
+
+  .board-container {
+    position: absolute;
+    z-index: 10;
+    cursor: grab;
+    touch-action: none;
+  }
+  .board-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    height: 36px;
+    background: #2c2420;
+    border-radius: 0 0 6px 6px;
+    padding: 0 6px;
+    user-select: none;
+  }
+  .board-btn {
+    background: none;
+    border: none;
+    color: #e8ddd0;
+    font-size: 18px;
+    width: 32px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.1s ease;
+  }
+  .board-btn:hover { background: rgba(255,255,255,0.12); }
+  .board-btn:active { background: rgba(255,255,255,0.2); }
+  .board-move-label {
+    color: #e8ddd0;
+    font: 600 13px/1 system-ui, sans-serif;
+    min-width: 70px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  .move-token {
+    font-family: system-ui, sans-serif;
+    font-size: 0.88em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--accent);
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 1px 3px;
+    margin: 0 -1px;
+    transition: background 0.1s ease, color 0.1s ease;
+  }
+  .move-token:hover { background: rgba(139, 69, 19, 0.1); }
+  .move-token--active {
+    background: rgba(139, 69, 19, 0.15);
+    color: #6b3410;
+  }
+
+  .hint {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    z-index: 100;
+    font: 12px/1 system-ui, sans-serif;
+    color: var(--muted);
+    background: rgba(255,253,248,0.85);
+    backdrop-filter: blur(8px);
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.06);
+    pointer-events: none;
+  }
+
+  @media (max-width: 600px) {
+    .page { width: 100vw; }
+    .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="hint">Click a move. Drag the board. Arrow keys.</div>
+  <div class="page">
+    <div id="stage"></div>
+  </div>
+  <script type="module" src="./chess-blog.ts"></script>
+</body>
+</html>
