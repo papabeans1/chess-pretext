@@ -2,8 +2,6 @@
 
 experimenting with a chess blog reader where text reflows around a draggable board in real time powered by [pretext](https://github.com/chenglou/pretext) for dom-free text measurement and layout.
 
-![screenshot](public/screenshot.png)
-
 ![demo](public/demo.gif)
 
 
